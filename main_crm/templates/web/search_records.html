@@ -1,0 +1,51 @@
+{% extends 'parts/base.html' %}
+{% block content %}
+
+<h2 class="text-center">Your Search Results for "{{ query }}"</h2>
+<h3 class="text-center">you have {{ resualt_count }} resaults</h3>
+<div class="text-center">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Tall</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Date</th>
+                <th scope="col">View </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if resaults %}
+            {% for record in resaults %}
+            <tr>
+                <th scope="row">{{ resault.id }}</th>
+                <td>{{ record.first_name }}</td>
+                <td>{{ record.last_name }}</td>
+                <td>{{ record.category }}</td>
+                <td>{{ record.address }}</td>
+                <td>{{ record.phone }}</td>
+                <td>{{ record.tall }}</td>
+                <td>{{ record.weight }}</td>
+                <td>{{ record.updated_at }}</td>
+                <td><a href="{% url 'view_record' record.id %}" class="btn btn-outline-primary">View</a></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="10" class="text-center">
+                    <div class="alert alert-warning" role="alert">
+                        No resualts available for "{{ query }}".
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'parts/base.html' %}
+{% block content %}
+&nbsp;
+<div class="text-center">
+    <h1>Page Not Found</h1>
+    <h3>Sorry the page you are looking for doesn't exist</h3>
+    <hr style="border: 1px solid #174d6c; margin: 30px 150px;">
+
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-light">Return to Dashboard</a>
+</div>
+
+{% endblock %}

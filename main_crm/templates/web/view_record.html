@@ -1,0 +1,24 @@
+{% extends 'parts/base.html' %}
+{% block content %}
+<div class="text-center" style="margin-top: 30px;">
+    <h2>{{ record.first_name|capfirst }} {{ record.last_name|capfirst }}</h2>
+</div>
+<hr style="border: 1px solid #174d6c; margin: 30px 150px;">
+<div class="cart" style="padding-left: 200px;">
+    <h3>
+        <p><b>Record Details</b></p>
+        <p><b>Id: </b>{{ record.id }}</p>
+        <p><b>Full Name: </b> {{ record.first_name|capfirst }} {{ record.last_name|capfirst }}</p>
+        <p><b>Category: </b> {{ record.category }}</p>
+        <p><b>Address: </b> {{ record.address }}</p>
+        <p><b>Phone: </b> {{ record.phone }}</p>
+        <p><b>Tall: </b> {{ record.tall }}</p>
+        <p><b>Weight: </b> {{ record.weight }}</p>
+        <p><b>Last Updated At: </b> {{ record.updated_at }}</p>
+    </h3>
+    <div style="margin-top: 30px;">
+        <a href="{% url 'update_record' record.id %}" class="btn btn-outline-light">Edit <i class="fa-solid fa-pen"></i></a>
+        <a href="{% url 'delete_record' record.id %}" onclick="return confirm('Are you sure you want to delete this Record?')" class="btn btn-outline-danger">Delete <i class="fa-regular fa-trash-can"></i></a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'parts/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container bg-dark shadow-md p-5 form-layout">
+    <h2 class="text-center text-white mb-4">Update Record</h2>
+    <hr style="border: 1px solid #174d6c; margin: 0 50px 30px 50px;">
+    <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="text-center" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-outline-light">Update <i class="fa-solid fa-wrench"></i></button>
+    </div>
+    </form>
+</div>
+
+{% endblock content %}
