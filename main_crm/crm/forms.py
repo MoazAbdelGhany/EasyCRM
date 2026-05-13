@@ -18,7 +18,7 @@ class LoginForm(AuthenticationForm):
 class RecordForm(forms.ModelForm):
     class Meta:
         model = Record
-        fields = ['first_name', 'last_name', 'phone', 'address', 'category', 'tall', 'weight']
+        fields = ['first_name', 'last_name', 'phone', 'address', 'category', 'height', 'weight']
         widgets = {
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter 11-digit phone number'}),
         }

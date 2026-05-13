@@ -4,7 +4,8 @@ from django.forms import TextInput
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name']
+    search_fields = ['name']
 
 @admin.register(Record)
 class RecordAdmin(admin.ModelAdmin):

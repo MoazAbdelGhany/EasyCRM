@@ -15,10 +15,11 @@
 
 <div class="text-center" style="margin:0px 100px;">
   <form action="{% url 'search_records' %}" method="GET">
-    <input type="search" name="query" placeholder="Search here" class="form-control mr-sm">
+    <input type="search" name="query" placeholder="Search Records here" class="form-control mr-sm">
     <br>
     <button type="submit" class="btn btn-outline-success my-2 my-sm-0 mt-2">Search <i class="fa-solid fa-magnifying-glass"></i></button>
   </form>
+  <br>
 </div>
 <section id="records-section">
   <hr style="border: 1px solid #174d6c; margin: 30px 150px;">
@@ -33,7 +34,7 @@
           <th scope="col">Category</th>
           <th scope="col">Address</th>
           <th scope="col">Phone</th>
-          <th scope="col">Tall</th>
+          <th scope="col">height</th>
           <th scope="col">Weight</th>
           <th scope="col">Date</th>
           <th scope="col">View </th>
@@ -49,7 +50,7 @@
           <td>{{ record.category }}</td>
           <td>{{ record.address }}</td>
           <td>{{ record.phone }}</td>
-          <td>{{ record.tall }}</td>
+          <td>{{ record.height }}</td>
           <td>{{ record.weight }}</td>
           <td>{{ record.updated_at }}</td>
           <td><a href="{% url 'view_record' record.id %}" class="btn btn-outline-primary">View <i class="fa-solid fa-eye"></i>  </a></td>
@@ -69,6 +70,14 @@
   </div>
 </section>
 <section id="category-section">
+  <hr style="border: 1px solid #174d6c; margin: 30px 150px;"><br>
+  <div class="text-center" style="margin:0px 100px;">
+    <form action="{% url 'search_category' %}" method="GET">
+      <input type="search" name="query" placeholder="Search Categories here" class="form-control mr-sm">
+      <br>
+      <button type="submit" class="btn btn-outline-success my-2 my-sm-0 mt-2">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>  
+  </div><br>
   <hr style="border: 1px solid #174d6c; margin: 30px 150px;">
   <h2 class="text-center">Your Categories</h2>
   <div class="text-center">

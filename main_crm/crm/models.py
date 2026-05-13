@@ -25,7 +25,7 @@ class Record(models.Model):
         max_length=11,
         validators=[RegexValidator(r'^\d{11}$', message="Phone number must be 11 digits")]
     )
-    tall = models.FloatField(validators=[MinValueValidator(0.0),MaxValueValidator(250)])
+    height = models.FloatField(validators=[MinValueValidator(0.0),MaxValueValidator(250)])
     weight = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(500)])
     address = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)

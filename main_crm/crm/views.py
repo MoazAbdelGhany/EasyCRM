@@ -17,7 +17,7 @@ def register (request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Registration is successfully')
+            messages.success(request, 'Registration completed successfully')
             return redirect('login')
         else:
             form = CreateUserForm()
@@ -36,7 +36,7 @@ def login_view(request):
             user = authenticate(request, username= username, password = password)
             if user is not None:
                 login(request, user)
-                messages.success(request, 'Login successfull')
+                messages.success(request, 'Login successful')
                 return redirect('dashboard')
     else:
         form = LoginForm()
@@ -73,8 +73,8 @@ def create_record(request):
         
 @login_required(login_url='login')
 def view_record(request , record_id):
-    all_records = get_object_or_404(Record , id = record_id)
-    context = {'record':all_records}
+    record = get_object_or_404(Record , id = record_id)
+    context = {'record':record}
     return render (request , 'web/view_record.html' , context) 
 
 @login_required(login_url='login')
@@ -122,7 +122,7 @@ def create_category(request):
 def delete_category(request, category_id):
     category= get_object_or_404(Category, id = category_id)
     category.delete()
-    messages.success(request , 'Deleted Successfuly')
+    messages.success(request , 'Deleted Successfully')
     return redirect('dashboard')
 
 @login_required(login_url='login')
@@ -133,7 +133,7 @@ def update_category(request, category_id):
         form = CategoryForm(request.POST, instance= category)
         if form.is_valid():
             form.save()
-            messages.success(request , 'updated successfully')
+            messages.success(request , 'Updated successfully')
             return redirect('dashboard')
         else:
             form = CategoryForm(instance= category)
@@ -150,38 +150,38 @@ logger = logging.getLogger(__name__)
 @login_required(login_url='login')
 def search_records(request):
     query = request.GET.get('query')
-    resaults =[]
+    results =[]
     try:
         if query:
-            resaults = Record.objects.filter(
+            results = Record.objects.filter(
                 Q(first_name__icontains=query) | 
                 Q(last_name__icontains=query) | 
                 Q(id__icontains=query) | 
                 Q(phone__icontains=query) |
                 Q(address__icontains=query) |
                 Q(category__name__icontains=query) |
-                Q(tall__icontains=query) |
+                Q(height__icontains=query) |
                 Q(weight__icontains=query)
             )
     except Exception as e :
         logger.error("An error occurred during search. Error details: %s", e)
-    resaults_count=len(resaults)
-    context = {'resaults':resaults, 'query':query,'resualt_count':resaults_count}
+    results_count=len(results)
+    context = {'results':results, 'query':query,'resualt_count':results_count}
     return render(request , 'web/search_records.html' , context)
 
 @login_required(login_url='login')
 def search_category(request):
-    query = request.Get.get('query')
-    resaults = []
+    query = request.GET.get('query')
+    results = []
     try : 
         if query:
-            resaults= Category.objects.filter(
+            results= Category.objects.filter(
                 Q(name__icontains = query)
             )
     except Exception as e : 
-        logger.error("An error occured during search. Error details: %s", e)
-    resaults_count = len(resaults)
-    context = {'resaults':resaults , 'query':query , 'resault_count':resaults_count}
+        logger.error("An error occurred during search. Error details: %s", e)
+    results_count = len(results)
+    context = {'results':results , 'query':query , 'resault_count':results_count}
     return render(request, 'web/search_records.html' , context)
 
 
